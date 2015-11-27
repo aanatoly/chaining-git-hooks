@@ -9,13 +9,13 @@ a wrapper to call them one by one.
 Copy `hook-chain` script to the `.git/hooks` directory
 ```
 cd my-project/.git/hooks
-git clone https://github.com/aanatoly/miniconf.git /tmp/miniconf
-cp /tmp/miniconf/git-hooks/hook-chain .
+git clone https://github.com/aanatoly/chaining-git-hooks.git /tmp/cgh
+cp /tmp/cgh/git-hooks/hook-chain .
 ```
 Copy relevant hooks and name them TYPE-NO-NAME. For example, to have 2
    pre-commit hooks, do this:
 ```
-cp /tmp/miniconf/git-hooks/pre-commit-[0-9]*  .
+cp /tmp/cgh/pre-commit-[0-9]*  .
 ```
 Create link, named as original hook pointing to `hook-chain`
 ```
