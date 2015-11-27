@@ -10,7 +10,7 @@ Copy `hook-chain` script to the `.git/hooks` directory
 ```
 cd my-project/.git/hooks
 git clone https://github.com/aanatoly/chaining-git-hooks.git /tmp/cgh
-cp /tmp/cgh/git-hooks/hook-chain .
+cp /tmp/cgh/hook-chain .
 ```
 Copy relevant hooks and name them TYPE-NO-NAME. For example, to have 2
    pre-commit hooks, do this:
