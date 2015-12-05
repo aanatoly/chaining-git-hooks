@@ -5,6 +5,14 @@ to chain them.
 With it, you can have many pre-commit scripts without explcitly writing 
 a wrapper to call them one by one.
 
+## Hooks
+
+ * pre-commit-01-rm-trailing-ws - fails commit if file has trailing whitespace
+ * pre-commit-02-pep8 - fails commit if python file is not pep8 compliant,
+   ignores other files.
+ * prepare-commit-msg-01-ref-issues - inserts issue reference into commit
+   message, then lets user edit it.
+
 ## Usage 
 Copy `hook-chain` script to the `.git/hooks` directory
 ```
@@ -23,12 +31,3 @@ rm -f pre-commit
 ln -sf hook-chain pre-commit
 ```
 That is it.
-
-## Hooks
-
- * pre-commit-01-rm-trailing-ws - fails commit if file has trailing whitespace
- * pre-commit-02-pep8 - fails commit if python file is not pep8 compliant,
-   does nothing for other files.
- * prepare-commit-msg-00-sample - TBD
- * prepare-commit-msg-01-ref-issues - inserts issue reference into commit
-   message, then lets user edit it.
