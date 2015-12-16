@@ -1,0 +1,52 @@
+#!/usr/bin/env python2
+
+'''
+If commit has only one text file, sugest "update FILE" commit title
+'''
+
+import subprocess as sp
+import sys
+import os
+
+
+def mini_subj(st, name):
+    msg = open(sys.argv[1], 'r').read().splitlines()
+    if not msg[0].strip():
+        msg.insert(0, '')
+    st = st.lower()
+    print "st", st
+    if st == 'a':
+        subj = "add"
+    elif st == 'm':
+        subj = "update"
+    else:
+        return
+    subj = "#%s %s" % (subj, name)
+    msg = [subj] + msg[1:]
+    msg = '\n'.join(msg)
+    # print "new message\n", msg
+    open(sys.argv[1], 'w').write(msg)
+
+
+def main():
+    cmd = 'git diff --cached --name-status'.split()
+    files = sp.check_output(cmd).splitlines()
+    for f in files:
+        st = f[0]
+        name = f[1:].strip()
+        bname = os.path.basename(name)
+        ext = os.path.splitext(name)[1]
+        # print "hook: act %s, name '%s', bname '%s', ext '%s'" % \
+        #     (st, name, bname, ext)
+
+    if len(files) != 1:
+        return
+
+    if ext in ['.md', '.txt']:
+        mini_subj(st, name)
+    elif bname.lower() in ['readme', 'changelog', '.gitignore']:
+        mini_subj(st, name)
+
+  
+if __name__ == '__main__':
+    main()
